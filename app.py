@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for,flash
-from flask_mysqldb import MySQL
+from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 
@@ -9,8 +9,8 @@ app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'contactos'
-mysql = MySQL(app)
-
+mysql = MySQL()
+mysql.init_app(app)
 
 #Settings
 
@@ -18,7 +18,7 @@ mysql = MySQL(app)
 
 @app.route('/')
 def login():
-	cur = mysql.connection.cursor()
+	cur = mysql.get_db().cursor()
 	cur.execute('SELECT email FROM contacs')
 	data = cur.fetchall()
 	print(data)
