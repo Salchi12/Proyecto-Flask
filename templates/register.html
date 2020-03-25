@@ -1,19 +1,15 @@
-{% with messages = get_flashed_messages()%}
+{% with messages = get_flashed_messages() %}
 {% if messages %}
-{% for message in messages %}
-<p>{{ message }}</p>
+{% for message in messages%}
+    <p>{{ message }}</p>
 {% endfor %}
 {% endif %}
 {% endwith %}
-
-	<form action="/datos" method ="POST">
-		<input type="text" name="fullname" placeholder="Full Name">
-		<input type="text" name="phone" placeholder="Phone">
-		<input type="text" name="email" placeholder="Email">
-		<input type="text" name="password" placeholder="Password">
-		<button>
-			Save
-		</button>
-	</form>
-</body>
-</html>
+<form action="/add_contact" method="POST">
+    <input type="text" name="fullname" placeholder="Ingrese su nombre:">
+    <input type="text" name="phone" placeholder="Ingrese Nro de celular:">
+    <input type="text" name="email" placeholder="Ingrese su email:">
+    <button type="submit">
+        Guardar
+    </button>
+</form>
